@@ -31,119 +31,267 @@
       <li><a href="Contact1.html"><i class="fas fa-phone"></i> Contact</a></li>
     </ul>
   </div>
+<div class="main">
+  <header>
+   <div id="greeting">Welcome!</div>
+   <button onclick="logout('login.html')" style="float:right; background-color: #ef4444; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer;">
+    <i class="fas fa-sign-out-alt"></i> Log Out
+   </button>
+  </header>
 
-  <div class="main">
-    <header>
-      <div id="greeting">Welcome, Student!>!</div>
-      <form method="post" style="display:inline;">
-        <button type="submit" name="logout" class="logout-button">
-          <i class="fas fa-sign-out-alt"></i> Log Out
-        </button>
-      </form>
-    </header>
-
-    <div class="dashboard-content">
-      <section id="main-dashboard">
-        <div class="dashboard">
-          <div class="card">
-            <h2>Monthly Enrollments</h2>
-            <canvas id="barChart"></canvas>
-          </div>
-          <div class="card">
-            <h2>Track Distribution</h2>
-            <canvas id="pieChart"></canvas>
-          </div>
-          <div class="card">
-            <h2>Summary</h2>
-            <ul>
-              <li>Total Enrolled: <strong>182</strong></li>
-              <li>New This Month: <strong>43</strong></li>
-              <li>Target: <strong>250</strong></li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <!-- Other SPA sections remain for reference, but navigation is now via links -->
-      <section id="profile" class="hidden">
-        <h2><i class="fas fa-user-circle"></i> Student Profile</h2>
-        <div id="profile-details"></div>
-        <button onclick="editProfile()">Edit Profile</button>
-      </section>
-      <section id="courses" class="hidden">
-        <h2><i class="fas fa-book"></i> My Courses</h2>
-        <div id="course-list"></div>
-      </section>
-      <section id="grades" class="hidden">
-        <h2><i class="fas fa-file-alt"></i> Grades</h2>
-        <div id="grade-list"></div>
-      </section>
-      <section id="announcements" class="hidden">
-        <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
-        <div id="announcement-list"></div>
-      </section>
-      <section id="resources" class="hidden">
-        <h2><i class="fas fa-folder"></i> Resources</h2>
-        <div id="resource-list"></div>
-      </section>
-      <section id="calendar" class="hidden">
-        <h2><i class="fas fa-calendar-week"></i> Calendar</h2>
-        <div id="calendar-view"></div>
-      </section>
+  <div class="dashboard-content">
+   <section id="main-dashboard">
+    <div class="dashboard">
+     <div class="card">
+      <h2>Monthly Enrollments</h2>
+      <canvas id="barChart"></canvas>
+     </div>
+     <div class="card">
+      <h2>Track Distribution</h2>
+      <canvas id="pieChart"></canvas>
+     </div>
+     <div class="card">
+      <h2>Summary</h2>
+      <ul>
+       <li>Total Enrolled: <strong>182</strong></li>
+       <li>New This Month: <strong>43</strong></li>
+       <li>Target: <strong>250</strong></li>
+      </ul>
+     </div>
     </div>
+   </section>
+
+   <section id="profile" class="hidden">
+    <h2><i class="fas fa-user-circle"></i> Student Profile</h2>
+    <div id="profile-details">
+     </div>
+    <button onclick="editProfile()">Edit Profile</button>
+   </section>
+
+   <section id="courses" class="hidden">
+    <h2><i class="fas fa-book"></i> My Courses</h2>
+    <div id="course-list">
+     </div>
+   </section>
+
+   <section id="grades" class="hidden">
+    <h2><i class="fas fa-file-alt"></i> Grades</h2>
+    <div id="grade-list">
+     </div>
+   </section>
+
+   <section id="announcements" class="hidden">
+    <h2><i class="fas fa-bullhorn"></i> Announcements</h2>
+    <div id="announcement-list">
+     </div>
+   </section>
+
+   <section id="resources" class="hidden">
+    <h2><i class="fas fa-folder"></i> Resources</h2>
+    <div id="resource-list">
+     </div>
+   </section>
+
+   <section id="calendar" class="hidden">
+    <h2><i class="fas fa-calendar-week"></i> Calendar</h2>
+    <div id="calendar-view">
+     </div>
+   </section>
+  </div>
   </div>
 
   <script>
- 
-    // Chart Data
-    const barCtx = document.getElementById('barChart').getContext('2d');
-    new Chart(barCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-        datasets: [{
-          label: 'Enrollments',
-          data: [26, 23, 29, 30, 22, 20, 32],
-          backgroundColor: '#6366f1'
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        }
+  // Get logged-in user
+  const user = localStorage.getItem("loggedInUser") || "Student";
+  document.getElementById("greeting").textContent = `Welcome, ${user}!`;
+
+  // Log out
+  function logout() {
+   localStorage.removeItem("loggedInUser");
+   window.location.href = "login.html"; // Adjust as needed
+  }
+
+  // Chart Data
+  const barCtx = document.getElementById('barChart').getContext('2d');
+  new Chart(barCtx, {
+   type: 'bar',
+   data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    datasets: [{
+     label: 'Enrollments',
+     data: [26, 23, 29, 30, 22, 20, 32],
+     backgroundColor: '#6366f1'
+    }]
+   }
+  });
+
+  const pieCtx = document.getElementById('pieChart').getContext('2d');
+  new Chart(pieCtx, {
+   type: 'pie',
+   data: {
+    labels: ['GAS', 'HUMSS', 'STEM', 'ABM', 'TVL'],
+    datasets: [{
+     data: [40, 35, 30, 35, 42],
+     backgroundColor: ['#3b82f6', '#facc15', '#ef4444', '#00ff00', '#ff8000']
+    }]
+   }
+  });
+
+  // --- Section Display Functions ---
+  function hideAllSections() {
+   const sections = document.querySelectorAll('.dashboard-content > section');
+   sections.forEach(section => section.classList.add('hidden'));
+  }
+
+  function showSection(id) {
+   hideAllSections();
+   document.getElementById(id).classList.remove('hidden');
+  }
+
+  function showMainDashboard() {
+   hideAllSections();
+   document.getElementById('main-dashboard').classList.remove('hidden');
+  }
+
+  function showProfile() {
+   showSection('profile');
+   populateProfile();
+  }
+
+  function showCourses() {
+   showSection('courses');
+   populateCourses();
+  }
+
+  function showGrades() {
+   showSection('grades');
+   populateGrades();
+  }
+
+  function showAnnouncements() {
+   showSection('announcements');
+   populateAnnouncements();
+  }
+
+  function showResources() {
+   showSection('resources');
+   populateResources();
+  }
+
+  function showCalendar() {
+   showSection('calendar');
+   displayCalendar();
+  }
+
+  // --- Data Population (Dummy Data for Now) ---
+  function populateProfile() {
+   const profileDetails = document.getElementById('profile-details');
+   profileDetails.innerHTML = `
+    <p><strong>Name:</strong> ${localStorage.getItem('loggedInUser') || 'Jane Doe'}</p>
+    <p><strong>Student ID:</strong> 20231001</p>
+    <p><strong>Track:</strong> STEM</p>
+    <p><strong>Email:</strong> jane.doe@example.com</p>
+   `;
+  }
+
+  function editProfile() {
+   //  Implement edit functionality (e.g., redirect to an edit page or show an inline form)
+   alert("Edit profile functionality not implemented in this example.");
+  }
+
+  function populateCourses() {
+   const courseList = document.getElementById('course-list');
+   courseList.innerHTML = `
+    <ul>
+     <li>Introduction to Physics</li>
+     <li>Calculus I</li>
+     <li>Chemistry</li>
+     <li>English Composition</li>
+    </ul>
+   `;
+  }
+
+  function populateGrades() {
+   const gradeList = document.getElementById('grade-list');
+   gradeList.innerHTML = `
+    <table>
+     <thead>
+      <tr>
+       <th>Course</th>
+       <th>Grade</th>
+      </tr>
+     </thead>
+     <tbody>
+      <tr>
+       <td>Introduction to Physics</td>
+       <td>92</td>
+      </tr>
+      <tr>
+       <td>Calculus I</td>
+       <td>88</td>
+      </tr>
+      <tr>
+       <td>Chemistry</td>
+       <td>95</td>
+      </tr>
+      <tr>
+       <td>English Composition</td>
+       <td>90</td>
+      </tr>
+     </tbody>
+    </table>
+   `;
+  }
+
+  function populateAnnouncements() {
+   const announcementList = document.getElementById('announcement-list');
+   announcementList.innerHTML = `
+    <div class="announcement">
+     <h3>Important Announcement</h3>
+     <p>Classes will be suspended on December 8, 2023, due to a school event.</p>
+     <p class="announcement-date">December 1, 2023</p>
+    </div>
+    <div class="announcement">
+     <h3>Deadline Reminder</h3>
+     <p>The deadline for submission of research papers is on December 15, 2023.</p>
+     <p class="announcement-date">November 25, 2023</p>
+    </div>
+   `;
+  }
+
+  function populateResources() {
+   const resourceList = document.getElementById('resource-list');
+   resourceList.innerHTML = `
+    <ul>
+     <li><a href="#">Physics Textbook PDF</a></li>
+     <li><a href="#">Calculus Lecture Notes</a></li>
+     <li><a href="#">Chemistry Lab Manual</a></li>
+    </ul>
+   `;
+  }
+
+  function displayCalendar() {
+   const calendarView = document.getElementById('calendar-view');
+   calendarView.innerHTML = `<p>Calendar functionality to be implemented using a library or custom code.</p>`;
+   //  You'd likely use a library like FullCalendar.js here to render a real calendar
+  }
+
+  //  Show main dashboard on load
+  showMainDashboard();
+
+  const sidebar = document.querySelector('.sidebar');
+  const sidebarToggle = document.getElementById('sidebar-toggle');
+  if (sidebarToggle) {
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+    // Optional: close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
       }
     });
-
-    const pieCtx = document.getElementById('pieChart').getContext('2d');
-    new Chart(pieCtx, {
-      type: 'pie',
-      data: {
-        labels: ['GAS', 'HUMSS', 'STEM', 'ABM', 'TVL'],
-        datasets: [{
-          data: [40, 35, 30, 35, 42],
-          backgroundColor: ['#3b82f6', '#facc15', '#ef4444', '#00ff00', '#ff8000']
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false
-      }
-    });
-
-    // Sidebar toggle
-    const sidebar = document.querySelector('.sidebar');
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    if (sidebarToggle) {
-      sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
-      });
-      document.addEventListener('click', (e) => {
-        if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target)) {
-          sidebar.classList.remove('open');
-        }
-      });
-    }
+  }
   </script>
-</body>
-</html>
+ </body>
+ </html>
