@@ -1,80 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - IIHC SCHOOL</title> <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"/> 
-  <link rel="stylesheet" href="login.css"/> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Login - IIHC SCHOOL</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"/>
+    <link rel="stylesheet" href="login.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
 </head>
-<body class="d-flex justify-content-center align-items-center min-vh-100"> <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
+<body class="d-flex justify-content-center align-items-center min-vh-100">
+    <a href="#main-content" class="visually-hidden focusable">Skip to main content</a>
 
-  <div class="iih">
-      <a href="Index1.html" class="text-decoration-none"> <h1>IIHC</h1>
-        <h2>SCHOOL</h2> </a>
-  </div>
-
-  <div class="login-box" id="main-content"> <h2>LOG IN TO YOUR ACCOUNT</h2>
-
-    <form onsubmit="handleLogin(event)">
-      <div class="mb-3"> <label for="username" class="form-label visually-hidden">Username</label> <input type="text" id="username" class="form-control" placeholder="USERNAME" required /> </div>
-       <div class="mb-3"> <label for="password" class="form-label visually-hidden">Password</label> <input type="password" id="password" class="form-control" placeholder="PASSWORD" required /> </div>
-      <button type="submit" class="btn btn-primary">LOGIN</button> </form>
-
-    <div class="registration-link mt-3"> Don't have an account? <a href="registration.html">Sign up</a>
+    <div class="iih">
+        <a href="Index1.html" class="text-decoration-none">
+            <h1>IIHC</h1>
+            <h2>SCHOOL</h2>
+        </a>
     </div>
-  </div>
 
-  <button id="dark-mode-toggle" class="btn btn-outline-secondary position-fixed top-0 end-0 m-3">☀</button>
+    <div class="login-box" id="main-content">
+        <h2>LOG IN TO YOUR ACCOUNT</h2>
+
+        <form onsubmit="handleLogin(event)">
+            <div class="mb-3">
+                <label for="username" class="form-label visually-hidden">Username</label>
+                <input type="text" id="username" class="form-control" placeholder="USERNAME" required />
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label visually-hidden">Password</label>
+                <input type="password" id="password" class="form-control" placeholder="PASSWORD" required />
+            </div>
+            <button type="submit" class="btn btn-primary">LOGIN</button>
+        </form>
+
+        <div class="registration-link mt-3">
+            Don't have an account? <a href="registration.html">Sign up</a>
+        </div>
+    </div>
+
+    <button id="dark-mode-toggle" class="btn btn-outline-secondary position-fixed top-0 end-0 m-3">☀</button>
 
 
-  <script src="js/bootstrap.bundle.min.js"></script> <script>
-    // Dark mode toggle functionality (Improved version)
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    // No navbar on this page, so no need to select it here
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Dark mode toggle functionality (Improved version)
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        // No navbar on this page, so no need to select it here
 
-    // Check for saved user preference on load
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        darkModeToggle.innerHTML = '🔆'; // Sun icon for dark mode
-    } else {
-        darkModeToggle.innerHTML = '☀'; // Sun icon for light mode
-    }
-
-    darkModeToggle.addEventListener('click', function () {
-        body.classList.toggle('dark-mode');
-
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('darkMode', 'enabled');
+        // Check for saved user preference on load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
             darkModeToggle.innerHTML = '🔆'; // Sun icon for dark mode
         } else {
-            localStorage.setItem('darkMode', 'disabled');
             darkModeToggle.innerHTML = '☀'; // Sun icon for light mode
         }
-    });
 
-    // Basic login script (kept as is, you might replace this with a backend integration)
-    function handleLogin(event) {
-      event.preventDefault();
+        darkModeToggle.addEventListener('click', function () {
+            body.classList.toggle('dark-mode');
 
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '🔆'; // Sun icon for dark mode
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '☀'; // Sun icon for light mode
+            }
+        });
 
-      if (username && password) {
-        // Save username to local storage
-        localStorage.setItem("loggedInUser", username);
+        // Basic login script (kept as is, you might replace this with a backend integration)
+        function handleLogin(event) {
+            event.preventDefault();
 
-        alert("Login successful!");
-        window.location.href = "dashboard.html"; // Redirect on success
-      } else {
-        alert("Please enter both username and password.");
-      }
-    }
-  </script>
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username && password) {
+                // Save username to local storage
+                localStorage.setItem("loggedInUser", username);
+
+                alert("Login successful!");
+                window.location.href = "dashboard.html"; // Redirect on success
+            } else {
+                alert("Please enter both username and password.");
+            }
+        }
+    </script>
 
 </body>
 </html>
