@@ -1,0 +1,150 @@
+/* Privacy Policy Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styling */
+.standard-page-header {
+    background-color: #2c3e50;
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+}
+
+.standard-page-header .container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+/* Main Content Styling */
+.page-content {
+    padding: 2rem 0;
+}
+
+.page-content h2 {
+    color: #2c3e50;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.page-content h3 {
+    color: #3498db;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.page-content p {
+    margin-bottom: 1rem;
+}
+
+.page-content ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.page-content li {
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-card {
+    background-color: var(--soft-blue, #f8f9fa);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.contact-info-card address {
+    margin-bottom: 0;
+}
+
+/* Contact Info Styling */
+.page-content address {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+.footer-legal-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 0.5rem;
+}
+
+.footer-legal-links a:hover {
+    text-decoration: underline;
+}
+
+ul li {
+    margin-bottom: 0.5rem;
+}
+
+ul ul {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.terms-footer {
+    border-top: 1px solid #dee2e6;
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Modal Styling */
+.modal-content .page-content {
+    padding: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .standard-page-header .container h1 {
+        font-size: 2rem;
+    }
+    
+    .page-content h2 {
+        font-size: 1.7rem;
+    }
+    
+    .page-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    footer .row > div {
+        margin-bottom: 1.5rem;
+    }
+}
